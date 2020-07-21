@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <h1>Welcome</h1>
+
+    <h2><a href="/api/doc">API Docs</a></h2>
+
+    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+        <h3>Email: {{ app.user.email }} - <a href="/logout">Logout</a> </h3>
+        {% if not app.user.isVerified %}
+            <h3>Please verify your e-mail</h3>
+            <h4><a href="/verify/send">Click here to re-send the e-mail</a></h4>
+        {% endif %}
+    {% else %}
+        <h2><a href="/login">Login</a></h2>
+        <h5><a href="/reset-password">Forgot Password?</a></h5>
+    {% endif %}
+{% endblock %}
